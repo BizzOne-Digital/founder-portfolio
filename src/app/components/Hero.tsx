@@ -8,6 +8,7 @@ import {
   SoundwaveIcon,
   LightningIcon,
   MirrorIcon,
+  CloseIcon,
 } from "./Icons";
 
 const VIDEO_URL =
@@ -127,6 +128,14 @@ export default function Hero() {
         className={styles.menu}
         aria-hidden={!isOpen}
       >
+        <button
+          className={styles.menuClose}
+          onClick={() => setIsOpen(false)}
+          aria-label="Close menu"
+        >
+          <CloseIcon size={18} color="#fff" />
+        </button>
+
         <div className={styles.menuInner}>
           <p className={styles.menuEyebrow}>Menu</p>
           <ul className={styles.menuList}>

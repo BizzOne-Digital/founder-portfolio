@@ -95,13 +95,28 @@ body {
 }
 .breathe { animation: breathe 6s ease-in-out infinite; }
 
-/* journey path fill */
+/* journey path fill — draws in on scroll, bottom-to-top along the path direction */
 .path-fill {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  transition: stroke-dashoffset 1.4s cubic-bezier(0.22,1,0.36,1);
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.22,1,0.36,1);
 }
 .path-fill.visible { stroke-dashoffset: 0; }
+
+/* continuous travelling glow along the same path, always moving */
+@keyframes flowDash {
+  from { stroke-dashoffset: 300; }
+  to { stroke-dashoffset: 0; }
+}
+.path-flow {
+  stroke-dasharray: 60 240;
+  animation: flowDash 3.6s linear infinite;
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path-flow, .comet { animation: none !important; opacity: 0 !important; }
+}
 
 .vertical-label {
   writing-mode: vertical-rl;

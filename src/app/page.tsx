@@ -9,9 +9,6 @@ import {
   MirrorIcon,
   ArrowRightIcon,
   ExternalLinkIcon,
-  PeopleIcon,
-  HeartPulseIcon,
-  InfinityIcon,
   TargetIcon,
   BulbIcon,
   NodeWebIcon,
@@ -19,6 +16,8 @@ import {
 } from "./components/Icons";
 import MagneticButton from "./components/MagneticButton";
 import Hero from "./components/Hero";
+import FootprintCards from "./components/FootprintCards";
+import JourneyIntro from "./components/JourneyIntro";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -64,90 +63,12 @@ const ecosystemBrands = [
   },
 ];
 
-const footprintStats = [
-  { Icon: PeopleIcon, num: "50K+", label: "Communities Touched" },
-  { Icon: HeartPulseIcon, num: "100K+", label: "Lives Impacted" },
-  { Icon: InfinityIcon, num: "∞", label: "Ideas In Motion" },
-  { Icon: TargetIcon, num: "100%", label: "Purpose Committed" },
-];
-
 const horizonPoints = [
   { Icon: BulbIcon, label: "Human-first innovation" },
   { Icon: NodeWebIcon, label: "Connected ecosystems" },
   { Icon: TargetIcon, label: "Limitless imagination" },
   { Icon: ShieldCheckIcon, label: "Legacy that lasts" },
 ];
-
-// ─── WORLD MAP (dotted, generated) ─────────────────────────────────────────
-
-// Rough continent silhouettes as ellipse unions, sampled on a fine grid so
-// the result reads as a world map, not a random scatter of blobs.
-const CONTINENTS = [
-  // North America
-  { cx: 20, cy: 22, rx: 10, ry: 9, rot: -0.15 },
-  { cx: 14, cy: 30, rx: 5, ry: 6, rot: 0 },
-  // South America
-  { cx: 26, cy: 46, rx: 5, ry: 11, rot: 0.1 },
-  // Europe
-  { cx: 49, cy: 18, rx: 5, ry: 5, rot: 0 },
-  // Africa
-  { cx: 51, cy: 34, rx: 8, ry: 13, rot: 0 },
-  // Asia
-  { cx: 68, cy: 18, rx: 13, ry: 8, rot: -0.1 },
-  { cx: 78, cy: 26, rx: 8, ry: 9, rot: 0.1 },
-  // Australia
-  { cx: 84, cy: 46, rx: 6, ry: 4, rot: 0 },
-];
-
-function insideContinents(x: number, y: number) {
-  return CONTINENTS.some((c) => {
-    const dx = x - c.cx;
-    const dy = y - c.cy;
-    const cos = Math.cos(c.rot);
-    const sin = Math.sin(c.rot);
-    const rx = dx * cos + dy * sin;
-    const ry = -dx * sin + dy * cos;
-    return (rx * rx) / (c.rx * c.rx) + (ry * ry) / (c.ry * c.ry) <= 1;
-  });
-}
-
-function WorldMapDots() {
-  const dots = useRef<{ x: number; y: number; r: number }[]>();
-  if (!dots.current) {
-    const arr: { x: number; y: number; r: number }[] = [];
-    let seed = 7;
-    const rand = () => {
-      seed = (seed * 9301 + 49297) % 233280;
-      return seed / 233280;
-    };
-    const step = 1.6;
-    for (let y = 4; y < 60; y += step) {
-      for (let x = 2; x < 98; x += step) {
-        const jx = x + (rand() - 0.5) * step * 0.6;
-        const jy = y + (rand() - 0.5) * step * 0.6;
-        if (insideContinents(jx, jy) && rand() > 0.12) {
-          arr.push({ x: jx, y: jy, r: 0.28 + rand() * 0.24 });
-        }
-      }
-    }
-    dots.current = arr;
-  }
-
-  return (
-    <svg viewBox="0 0 100 62" className="h-full w-full" aria-hidden="true">
-      {dots.current.map((d, i) => (
-        <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="rgba(224,168,86,0.6)" />
-      ))}
-      <path
-        d="M4 44 Q 30 24 52 32 T 96 20"
-        stroke="rgba(224,168,86,0.3)"
-        strokeWidth="0.15"
-        fill="none"
-        strokeDasharray="1 1.2"
-      />
-    </svg>
-  );
-}
 
 // ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 
@@ -232,10 +153,18 @@ export default function Page() {
               </p>
               <p>This is not a portfolio. This is a living ecosystem.</p>
             </div>
+
+            {/* compact principles row — mobile/tablet fallback for the ring below */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 lg:hidden">
+              <span className="text-[12px] text-paper-70">Purpose over profit.</span>
+              <span className="text-[12px] text-paper-70">Impact over ego.</span>
+              <span className="text-[12px] text-paper-70">Legacy over life.</span>
+              <span className="text-[11px] uppercase tracking-widest text-gold">Always.</span>
+            </div>
           </div>
 
           {/* principles ring */}
-          <div className="reveal-right hidden lg:flex justify-center">
+          <div className="reveal-right hidden justify-center lg:flex">
             <div className="relative flex h-56 w-56 items-center justify-center">
               {/* rotating dotted orbit with markers */}
               <div className="spin-slow pointer-events-none absolute inset-0 rounded-full border border-dashed border-paper-10">
@@ -262,25 +191,19 @@ export default function Page() {
       {/* ── JOURNEY ──────────────────────────────────────────────────────── */}
       <section id="journey" className="border-t border-paper-06 py-24 px-6 md:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="reveal mb-16 max-w-lg">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-gold">The Journey</p>
-            <h2 className="font-display text-[2rem] font-normal leading-tight text-paper md:text-[2.4rem]">
-              A path of curiosity, courage &amp; creation.
-            </h2>
-            <p className="mt-5 text-[14px] leading-relaxed text-paper-70">
-              Milestones aren&rsquo;t the destination. They&rsquo;re the fuel.
-            </p>
-            <a
-              href="#ecosystem"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-paper-30 px-6 py-2.5 text-[11px] uppercase tracking-wider text-paper hover:border-gold hover:text-gold transition-colors duration-300"
-            >
-              Explore the journey <ArrowRightIcon size={12} />
-            </a>
-          </div>
+          <JourneyIntro />
 
           {/* winding road */}
           <div className="reveal relative">
-            <svg viewBox="0 0 1200 240" className="w-full" preserveAspectRatio="none">
+            <svg viewBox="0 0 1200 240" className="h-28 w-full sm:h-36 md:h-auto" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="road-glow" x1="0" y1="200" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stopColor="#e0a856" stopOpacity="0" />
+                  <stop offset="0.5" stopColor="#f2c583" stopOpacity="1" />
+                  <stop offset="1" stopColor="#e0a856" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
               <path
                 ref={roadRef}
                 d="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
@@ -288,13 +211,39 @@ export default function Page() {
                 strokeWidth="2"
                 fill="none"
               />
+              {/* draws in on scroll, base + bottom-to-top travelling glow */}
               <path
-                className="path-fill visible"
+                className="path-fill"
                 d="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
                 stroke="#e0a856"
                 strokeWidth="2"
                 fill="none"
               />
+              <path
+                className="path-flow"
+                d="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
+                stroke="url(#road-glow)"
+                strokeWidth="3"
+                fill="none"
+              />
+
+              {/* comet travelling the length of the path, bottom-left to top-right */}
+              <circle className="comet" r="4.5" fill="#f7d9a3">
+                <animateMotion
+                  dur="4.5s"
+                  repeatCount="indefinite"
+                  path="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
+                />
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="4.5s" repeatCount="indefinite" />
+              </circle>
+              <circle className="comet" r="9" fill="#e0a856" opacity="0.35" filter="blur(4px)">
+                <animateMotion
+                  dur="4.5s"
+                  repeatCount="indefinite"
+                  path="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
+                />
+                <animate attributeName="opacity" values="0;0.35;0.35;0" keyTimes="0;0.08;0.92;1" dur="4.5s" repeatCount="indefinite" />
+              </circle>
             </svg>
 
             <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
@@ -364,45 +313,7 @@ export default function Page() {
       </section>
 
       {/* ── FOOTPRINT ────────────────────────────────────────────────────── */}
-      <section className="border-t border-paper-06 py-24 px-6 md:px-10">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
-          <div className="reveal-left">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-gold">The Footprint</p>
-            <h2 className="font-display text-[2rem] font-normal leading-tight text-paper md:text-[2.4rem]">
-              Small actions.
-              <br />
-              Collective impact.
-            </h2>
-            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-paper-70">
-              Creating ripples that outlive us all.
-            </p>
-            <a
-              href="#vision"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-paper-30 px-6 py-2.5 text-[11px] uppercase tracking-wider text-paper hover:border-gold hover:text-gold transition-colors duration-300"
-            >
-              Explore impact <ArrowRightIcon size={12} />
-            </a>
-
-            <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {footprintStats.map((s, i) => (
-                <div key={s.label} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <s.Icon size={20} color="#e0a856" />
-                  <p className="font-display mt-3 text-2xl text-paper">{s.num}</p>
-                  <p className="mt-1 text-[10px] uppercase tracking-wider text-paper-50">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="reveal-right relative aspect-[10/7] w-full overflow-hidden">
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(224,168,86,0.06), transparent 75%)" }}
-            />
-            <WorldMapDots />
-          </div>
-        </div>
-      </section>
+      <FootprintCards />
 
       {/* ── 2030 VISION ──────────────────────────────────────────────────── */}
       <section id="vision" className="relative border-t border-paper-06 overflow-hidden px-6 py-28 md:px-10">

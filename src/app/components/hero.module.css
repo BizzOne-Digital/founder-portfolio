@@ -169,6 +169,23 @@
   align-items: center;
   justify-content: center;
 }
+
+.menuClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 61;
+}
 .stage.isOpen .menu { opacity: 1; visibility: visible; }
 
 .menuInner { text-align: center; }
@@ -401,30 +418,66 @@
     top: calc(20 * var(--u));
   }
 
-  .headline {
-    white-space: normal;
-    left: calc(24 * var(--u));
-    right: calc(24 * var(--u));
-    top: auto;
+  /* .hero becomes the single in-flow flex item that fills the space between
+     the (absolutely-positioned) topbar and the logo strip, so the strip
+     naturally lands at the bottom instead of floating to the top. */
+  .hero {
     position: relative;
-    margin-top: calc(180 * var(--u));
+    inset: auto;
+    z-index: 10;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 24px 24px;
+  }
+
+  .headline {
+    position: static;
+    white-space: normal;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin: 0;
+    max-width: 100%;
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    animation: rise .9s cubic-bezier(.22,1,.36,1) .06s both;
   }
   .sub {
-    position: relative;
-    left: calc(24 * var(--u));
+    position: static;
+    left: auto;
+    right: auto;
     top: auto;
-    margin-top: calc(18 * var(--u));
-    right: calc(24 * var(--u));
+    margin: 14px 0 0;
+    max-width: 100%;
+    font-size: clamp(.9rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
+    word-spacing: normal;
   }
   .sub span { white-space: normal; }
   .actions {
-    position: relative;
-    left: calc(24 * var(--u));
+    position: static;
+    left: auto;
     top: auto;
-    margin-top: calc(24 * var(--u));
-    margin-bottom: calc(24 * var(--u));
+    margin: 22px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
   }
-  .ghost { margin-left: calc(20 * var(--u)); }
+  .pillCta {
+    width: auto;
+    height: auto;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  .ghost {
+    margin-left: 0;
+    font-size: 14px;
+  }
 
   .logos {
     position: relative;
@@ -432,11 +485,13 @@
     bottom: auto;
     transform: none;
     width: auto;
+    flex: 0 0 auto;
     margin: 0 24px 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 14px 18px;
   }
+  .lgWord { font-size: 13px; }
 }
 
 @media (min-width: 600px) and (max-aspect-ratio: 11/10) {
