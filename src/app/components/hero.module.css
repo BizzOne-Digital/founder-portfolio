@@ -8,7 +8,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #050505;
+  background: #1B3B2B;
   font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
@@ -48,14 +48,14 @@
   pointer-events: none;
   background-image:
     linear-gradient(to bottom,
-      rgba(5,5,5,0) 78.8%, rgba(5,5,5,.23) 79.6%, rgba(5,5,5,.45) 81.4%,
-      rgba(5,5,5,.75) 83.3%, rgba(5,5,5,.84) 85.2%, rgba(5,5,5,.888) 88%,
-      rgba(5,5,5,.905) 91%, rgba(5,5,5,.96) 95%, #050505 100%),
+      rgba(27,59,43,0) 78.8%, rgba(27,59,43,.23) 79.6%, rgba(27,59,43,.45) 81.4%,
+      rgba(27,59,43,.75) 83.3%, rgba(27,59,43,.84) 85.2%, rgba(27,59,43,.888) 88%,
+      rgba(27,59,43,.905) 91%, rgba(27,59,43,.96) 95%, #1B3B2B 100%),
     linear-gradient(to right,
-      #050505 calc(50% - 746 * var(--u)),
+      #1B3B2B calc(50% - 746 * var(--u)),
       transparent calc(50% - 676 * var(--u)),
       transparent calc(50% + 676 * var(--u)),
-      #050505 calc(50% + 746 * var(--u)));
+      #1B3B2B calc(50% + 746 * var(--u)));
 }
 
 /* ── TOPBAR ─────────────────────────────────────────────────────────── */
@@ -109,17 +109,19 @@
   position: absolute;
   right: calc(75.4 * var(--u));
   top: calc(27 * var(--u));
-  width: calc(175 * var(--u));
+  width: max-content;
   height: calc(49 * var(--u));
+  padding: 0 calc(24 * var(--u));
   border-radius: 999px;
   background: #ffffff;
-  color: #050505;
+  color: #1B3B2B;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: calc(20.6 * var(--u));
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
   opacity: 0;
   animation: rise .8s cubic-bezier(.22,1,.36,1) both;
 }
@@ -160,7 +162,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: linear-gradient(180deg, rgba(5,5,5,.98), rgba(5,5,5,.94));
+  background: linear-gradient(180deg, rgba(27,59,43,.98), rgba(27,59,43,.94));
   backdrop-filter: blur(14px);
   opacity: 0;
   visibility: hidden;
@@ -293,17 +295,20 @@
 }
 
 .pillCta {
-  width: calc(175.6 * var(--h));
+  width: max-content;
   height: calc(50 * var(--h));
+  padding: 0 calc(28 * var(--h));
   border-radius: 999px;
   background: #fff;
-  color: #050505;
+  color: #1B3B2B;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: calc(8 * var(--h));
   font-size: calc(20.6 * var(--h));
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
@@ -404,10 +409,10 @@
   .plate::after {
     background-image:
       linear-gradient(to bottom,
-        rgba(5,5,5,.72) 0%, rgba(5,5,5,.34) 24%, rgba(5,5,5,.34) 56%,
-        rgba(5,5,5,.80) 82%, rgba(5,5,5,.97) 94%, #050505 100%),
+        rgba(27,59,43,.72) 0%, rgba(27,59,43,.34) 24%, rgba(27,59,43,.34) 56%,
+        rgba(27,59,43,.80) 82%, rgba(27,59,43,.97) 94%, #1B3B2B 100%),
       linear-gradient(to right,
-        rgba(5,5,5,.86) 0%, rgba(5,5,5,.66) 42%, rgba(5,5,5,.20) 78%, rgba(5,5,5,.10) 100%);
+        rgba(27,59,43,.86) 0%, rgba(27,59,43,.66) 42%, rgba(27,59,43,.20) 78%, rgba(27,59,43,.10) 100%);
   }
 
   .links, .pillNav { display: none; }
@@ -466,17 +471,22 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 14px 16px;
   }
   .pillCta {
     width: auto;
     height: auto;
-    padding: 12px 24px;
-    font-size: 14px;
+    flex: none;
+    white-space: nowrap;
+    padding: 11px 20px;
+    font-size: clamp(12px, 3.6vw, 14px);
+    gap: 6px;
   }
   .ghost {
+    flex: none;
     margin-left: 0;
-    font-size: 14px;
+    white-space: nowrap;
+    font-size: clamp(12px, 3.6vw, 14px);
   }
 
   .logos {
@@ -502,10 +512,10 @@
   .plate::after {
     background-image:
       linear-gradient(to bottom,
-        rgba(5,5,5,.66) 0%, rgba(5,5,5,.28) 24%, rgba(5,5,5,.30) 56%,
-        rgba(5,5,5,.78) 82%, rgba(5,5,5,.96) 94%, #050505 100%),
+        rgba(27,59,43,.66) 0%, rgba(27,59,43,.28) 24%, rgba(27,59,43,.30) 56%,
+        rgba(27,59,43,.78) 82%, rgba(27,59,43,.96) 94%, #1B3B2B 100%),
       linear-gradient(to right,
-        rgba(5,5,5,.84) 0%, rgba(5,5,5,.60) 42%, rgba(5,5,5,.16) 78%, rgba(5,5,5,.06) 100%);
+        rgba(27,59,43,.84) 0%, rgba(27,59,43,.60) 42%, rgba(27,59,43,.16) 78%, rgba(27,59,43,.06) 100%);
   }
   .logos {
     grid-template-columns: repeat(5, auto);

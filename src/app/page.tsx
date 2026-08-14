@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import {
   PawIcon,
   HandHeartIcon,
@@ -36,30 +37,35 @@ const ecosystemBrands = [
     tag: "Companionship. Loyalty. Love.",
     Icon: PawIcon,
     accent: "#c99a5e",
+    href: "https://dtdogs.ca",
   },
   {
     name: "HandandPaw.ca",
     tag: "Care. Trust. Family.",
     Icon: HandHeartIcon,
     accent: "#8fae8b",
+    href: "https://handandpaw.ca",
   },
   {
     name: "Kroak Studiyo",
     tag: "Sound. Emotion. Connection.",
     Icon: SoundwaveIcon,
     accent: "#9d8bd6",
+    href: "#",
   },
   {
     name: "ABCL",
     tag: "Movement. Progress. Potential.",
     Icon: LightningIcon,
     accent: "#5f8fd6",
+    href: "#",
   },
   {
     name: "Aeon Salon",
     tag: "AI. Imagination. Visualization.",
     Icon: MirrorIcon,
     accent: "#d6c9e8",
+    href: "#",
   },
 ];
 
@@ -91,13 +97,13 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-void text-paper selection:bg-gold selection:text-void">
+    <div className="min-h-screen bg-void text-paper selection:bg-gold selection:text-ink">
       <Hero />
       {/* ── I AM ─────────────────────────────────────────────────────────── */}
       <section className="relative border-t border-paper-06 py-24 px-6 md:px-10 overflow-hidden">
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-40"
-          style={{ background: "radial-gradient(circle, rgba(224,168,86,0.07), transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.07), transparent 70%)" }}
         />
 
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-[0.9fr_1.3fr_0.8fr]">
@@ -105,7 +111,7 @@ export default function Page() {
           <div className="reveal-left group">
             <div className="relative mx-auto w-full max-w-[280px]">
               {/* ambient glow behind frame */}
-              <div className="breathe pointer-events-none absolute -inset-6 rounded-full blur-2xl opacity-60" style={{ background: "radial-gradient(circle, rgba(224,168,86,0.16), transparent 70%)" }} />
+              <div className="breathe pointer-events-none absolute -inset-6 rounded-full blur-2xl opacity-60" style={{ background: "radial-gradient(circle, rgba(212,175,55,0.16), transparent 70%)" }} />
 
               {/* decorative rotating ring */}
               <div className="spin-slow pointer-events-none absolute -inset-3 rounded-sm border border-paper-06" />
@@ -115,12 +121,12 @@ export default function Page() {
                   className="absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
                     background:
-                      "radial-gradient(circle at 50% 30%, rgba(224,168,86,0.16), transparent 60%)",
+                      "radial-gradient(circle at 50% 30%, rgba(212,175,55,0.16), transparent 60%)",
                   }}
                 />
                 <div className="grain absolute inset-0 opacity-40" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display text-6xl text-paper-15 transition-colors duration-500 group-hover:text-paper-30">DT</span>
+                  <span className="font-display text-6xl text-white/15 transition-colors duration-500 group-hover:text-white/25">DT</span>
                 </div>
 
                 {/* corner accents */}
@@ -198,9 +204,9 @@ export default function Page() {
             <svg viewBox="0 0 1200 240" className="h-28 w-full sm:h-36 md:h-auto" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="road-glow" x1="0" y1="200" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stopColor="#e0a856" stopOpacity="0" />
-                  <stop offset="0.5" stopColor="#f2c583" stopOpacity="1" />
-                  <stop offset="1" stopColor="#e0a856" stopOpacity="0" />
+                  <stop offset="0" stopColor="#D4AF37" stopOpacity="0" />
+                  <stop offset="0.5" stopColor="#E8CC7A" stopOpacity="1" />
+                  <stop offset="1" stopColor="#D4AF37" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
@@ -215,7 +221,7 @@ export default function Page() {
               <path
                 className="path-fill"
                 d="M20 200 C 180 220, 220 120, 340 140 S 520 220, 620 160 S 800 100, 900 130 S 1080 190, 1180 60"
-                stroke="#e0a856"
+                stroke="#D4AF37"
                 strokeWidth="2"
                 fill="none"
               />
@@ -236,7 +242,7 @@ export default function Page() {
                 />
                 <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="4.5s" repeatCount="indefinite" />
               </circle>
-              <circle className="comet" r="9" fill="#e0a856" opacity="0.35" filter="blur(4px)">
+              <circle className="comet" r="9" fill="#D4AF37" opacity="0.35" filter="blur(4px)">
                 <animateMotion
                   dur="4.5s"
                   repeatCount="indefinite"
@@ -286,28 +292,60 @@ export default function Page() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
-            {ecosystemBrands.map((b, i) => (
-              <div
-                key={b.name}
-                className="reveal group relative flex flex-col items-center px-4 py-6 text-center"
-                style={{ transitionDelay: `${i * 90}ms` }}
-              >
-                {/* soft glow behind node */}
-                <div
-                  className="pointer-events-none absolute left-1/2 top-8 h-32 w-32 -translate-x-1/2 rounded-full blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: `radial-gradient(circle, ${b.accent}40, transparent 70%)` }}
-                />
-                <div
-                  className="relative mb-6 flex h-16 w-16 items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-110"
-                  style={{ boxShadow: `0 0 0 1px ${b.accent}33, 0 0 30px -6px ${b.accent}55` }}
+          {/* curved fan gallery — five brand panels tilted like an opened hand of cards */}
+          <div className="reveal flex items-end justify-center gap-2 overflow-visible pt-6 sm:gap-3 md:gap-4">
+            {ecosystemBrands.map((b, i) => {
+              const isLive = b.href !== "#";
+              const centerIndex = (ecosystemBrands.length - 1) / 2;
+              const offset = i - centerIndex;
+              const rotate = offset * 6.5;
+              const lift = Math.abs(offset) * 20;
+              return (
+                <a
+                  key={b.name}
+                  href={b.href}
+                  target={isLive ? "_blank" : undefined}
+                  rel={isLive ? "noopener noreferrer" : undefined}
+                  className={`group relative h-[220px] w-[19%] shrink-0 overflow-hidden rounded-2xl transition-transform duration-500 ease-out [transform:rotate(var(--rot))_translateY(var(--lift))] hover:z-10 hover:[transform:rotate(0deg)_translateY(-10px)] sm:h-[280px] md:h-[320px] ${
+                    isLive ? "cursor-pointer" : "cursor-default"
+                  }`}
+                  style={
+                    {
+                      "--rot": `${rotate}deg`,
+                      "--lift": `${-lift}px`,
+                      transformOrigin: "bottom center",
+                      transitionDelay: `${i * 80}ms`,
+                      background: `linear-gradient(160deg, ${b.accent}55 0%, #1B3B2B 78%)`,
+                    } as CSSProperties
+                  }
                 >
-                  <b.Icon size={26} color={b.accent} />
-                </div>
-                <h3 className="text-[14px] font-medium text-paper">{b.name}</h3>
-                <p className="mt-2 text-[11px] leading-relaxed text-paper-50">{b.tag}</p>
-              </div>
-            ))}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <b.Icon size={30} color={b.accent} />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0f2318] via-[#0f2318]/70 to-transparent px-3 pb-3 pt-8 text-center sm:px-4 sm:pb-4">
+                    <p className="flex items-center justify-center gap-1 text-[11px] font-medium text-white sm:text-[13px]">
+                      {b.name}
+                      {isLive && <ExternalLinkIcon size={10} color="rgba(255,255,255,0.6)" />}
+                    </p>
+                    <p className="mt-1 hidden text-[10px] leading-snug text-white/60 sm:block">{b.tag}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+          <p className="reveal mt-14 text-center text-[13px] leading-relaxed text-paper-70">
+            Different expressions, one philosophy — brands that solve real human needs,
+            <br className="hidden sm:block" />
+            built with technology and care.
+          </p>
+          <div className="reveal mt-6 flex items-center justify-center gap-6">
+            <a href="#connect" className="text-[12px] font-medium uppercase tracking-wider text-paper underline decoration-paper-30 underline-offset-4 hover:text-gold hover:decoration-gold transition-colors duration-300">
+              Explore the ecosystem
+            </a>
+            <a href="#footprint" className="text-[12px] font-medium uppercase tracking-wider text-paper underline decoration-paper-30 underline-offset-4 hover:text-gold hover:decoration-gold transition-colors duration-300">
+              See the impact
+            </a>
           </div>
         </div>
       </section>
@@ -321,7 +359,7 @@ export default function Page() {
         <div className="grain vignette pointer-events-none absolute inset-0">
           <div
             className="absolute left-1/2 top-[62%] h-[380px] w-[380px] -translate-x-1/2 rounded-full blur-3xl breathe"
-            style={{ background: "radial-gradient(circle, rgba(224,168,86,0.55), transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, rgba(212,175,55,0.55), transparent 70%)" }}
           />
           <div className="absolute left-0 right-0 top-[65%] h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
         </div>
@@ -340,9 +378,9 @@ export default function Page() {
             </p>
             <MagneticButton
               href="#connect"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-[12px] font-medium uppercase tracking-wider text-void hover:bg-gold-soft transition-colors duration-300"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-[12px] font-medium uppercase tracking-wider text-ink hover:bg-gold-soft transition-colors duration-300"
             >
-              View the 2030 vision <ArrowRightIcon size={13} color="#07070a" />
+              View the 2030 vision <ArrowRightIcon size={13} color="#1B3B2B" />
             </MagneticButton>
           </div>
 
@@ -356,7 +394,7 @@ export default function Page() {
             <div className="drift-bg absolute left-1/2 top-[58%] h-40 w-40 -translate-x-1/2">
               <div
                 className="breathe h-full w-full rounded-full"
-                style={{ background: "radial-gradient(circle, #f2c583 0%, #e0a856 40%, transparent 72%)" }}
+                style={{ background: "radial-gradient(circle, #E8CC7A 0%, #D4AF37 40%, transparent 72%)" }}
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-1/2 rounded-t-[100%] bg-void" />
@@ -366,7 +404,7 @@ export default function Page() {
         <div className="relative mx-auto mt-16 grid max-w-7xl grid-cols-2 gap-6 sm:grid-cols-4">
           {horizonPoints.map((p, i) => (
             <div key={p.label} className="reveal flex items-center gap-3" style={{ transitionDelay: `${i * 90}ms` }}>
-              <p.Icon size={18} color="#e0a856" />
+              <p.Icon size={18} color="#D4AF37" />
               <span className="text-[12px] text-paper-70">{p.label}</span>
             </div>
           ))}
@@ -385,9 +423,9 @@ export default function Page() {
           <div className="reveal mt-10 flex flex-wrap justify-center gap-3">
             <MagneticButton
               href="#ecosystem"
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-[12px] font-medium uppercase tracking-wider text-void hover:bg-gold-soft transition-colors duration-300"
+              className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-[12px] font-medium uppercase tracking-wider text-ink hover:bg-gold-soft transition-colors duration-300"
             >
-              Explore the ecosystem <ArrowRightIcon size={13} color="#07070a" />
+              Explore the ecosystem <ArrowRightIcon size={13} color="#1B3B2B" />
             </MagneticButton>
             <MagneticButton
               href="https://sunnyism.pro"

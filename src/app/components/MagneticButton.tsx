@@ -1,46 +1,24 @@
 "use client";
 
-import { useRef, useState } from "react";
-import type { ReactNode, MouseEvent } from "react";
+import type { ReactNode } from "react";
 
+// Plain link with a soft hover glow — the cursor-pull motion was removed to
+// keep the site's total motion budget to the hero video + the journey light.
 export default function MagneticButton({
   href,
   className = "",
   children,
   target,
   rel,
-  strength = 0.35,
 }: {
   href: string;
   className?: string;
   children: ReactNode;
   target?: string;
   rel?: string;
-  strength?: number;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = (e.clientX - rect.left - rect.width / 2) * strength;
-    const y = (e.clientY - rect.top - rect.height / 2) * strength;
-    setPos({ x, y });
-  };
-  const onLeave = () => setPos({ x: 0, y: 0 });
-
   return (
-    <a
-      ref={ref}
-      href={href}
-      target={target}
-      rel={rel}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className={`magnetic ${className}`}
-      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-    >
+    <a href={href} target={target} rel={rel} className={`magnetic ${className}`}>
       {children}
     </a>
   );
