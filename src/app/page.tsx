@@ -36,6 +36,7 @@ const ecosystemBrands = [
     name: "DTdogs.ca",
     tag: "Companionship. Loyalty. Love.",
     Icon: PawIcon,
+    logo: "/logos/dtdogs.png",
     accent: "#c99a5e",
     href: "https://dtdogs.ca",
   },
@@ -43,6 +44,7 @@ const ecosystemBrands = [
     name: "HandandPaw.ca",
     tag: "Care. Trust. Family.",
     Icon: HandHeartIcon,
+    logo: null,
     accent: "#8fae8b",
     href: "https://handandpaw.ca",
   },
@@ -50,6 +52,7 @@ const ecosystemBrands = [
     name: "Kroak Studiyo",
     tag: "Sound. Emotion. Connection.",
     Icon: SoundwaveIcon,
+    logo: "/logos/kroak.png",
     accent: "#9d8bd6",
     href: "#",
   },
@@ -57,6 +60,7 @@ const ecosystemBrands = [
     name: "ABCL",
     tag: "Movement. Progress. Potential.",
     Icon: LightningIcon,
+    logo: "/logos/abcl.png",
     accent: "#5f8fd6",
     href: "#",
   },
@@ -64,6 +68,7 @@ const ecosystemBrands = [
     name: "Aeon Salon",
     tag: "AI. Imagination. Visualization.",
     Icon: MirrorIcon,
+    logo: "/logos/aeon.png",
     accent: "#d6c9e8",
     href: "#",
   },
@@ -319,8 +324,17 @@ export default function Page() {
                     } as CSSProperties
                   }
                 >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <b.Icon size={30} color={b.accent} />
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    {b.logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={b.logo}
+                        alt={`${b.name} logo`}
+                        className="max-h-full max-w-full object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+                      />
+                    ) : (
+                      <b.Icon size={30} color={b.accent} />
+                    )}
                   </div>
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0f2318] via-[#0f2318]/70 to-transparent px-3 pb-3 pt-8 text-center sm:px-4 sm:pb-4">
                     <p className="flex items-center justify-center gap-1 text-[11px] font-medium text-white sm:text-[13px]">
