@@ -19,6 +19,7 @@ import MagneticButton from "./components/MagneticButton";
 import Hero from "./components/Hero";
 import FootprintCards from "./components/FootprintCards";
 import JourneyIntro from "./components/JourneyIntro";
+import GlobalReach from "./components/GlobalReach";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -363,6 +364,9 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      {/* ── GLOBAL REACH ─────────────────────────────────────────────────── */}
+      <GlobalReach />
 
       {/* ── FOOTPRINT ────────────────────────────────────────────────────── */}
       <FootprintCards />
