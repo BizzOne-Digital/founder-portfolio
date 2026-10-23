@@ -8,14 +8,14 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #1B3B2B;
+  background: #F7EFE6;
   font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
-  --ink: #fafafa;
-  --muted: #a7a6a6;
-  --nav: #b6b5b5;
-  --strip: #8b8a8a;
+  --ink: #fbf6ef;
+  --muted: #e2d8cb;
+  --nav: #eae2d6;
+  --strip: #6f6a60;
 }
 
 @supports (height: 100dvh) {
@@ -32,13 +32,12 @@
 
 .plateVideo {
   position: absolute;
-  left: 50%;
-  top: calc(1 * var(--u));
-  width: calc(1492 * var(--u));
-  height: calc(1054 * var(--u));
-  transform: translateX(calc(-50% - calc(0.5 * var(--u))));
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   pointer-events: none;
+  filter: brightness(1.22) saturate(1.05);
 }
 
 .plate::after {
@@ -48,14 +47,10 @@
   pointer-events: none;
   background-image:
     linear-gradient(to bottom,
-      rgba(27,59,43,0) 78.8%, rgba(27,59,43,.23) 79.6%, rgba(27,59,43,.45) 81.4%,
-      rgba(27,59,43,.75) 83.3%, rgba(27,59,43,.84) 85.2%, rgba(27,59,43,.888) 88%,
-      rgba(27,59,43,.905) 91%, rgba(27,59,43,.96) 95%, #1B3B2B 100%),
-    linear-gradient(to right,
-      #1B3B2B calc(50% - 746 * var(--u)),
-      transparent calc(50% - 676 * var(--u)),
-      transparent calc(50% + 676 * var(--u)),
-      #1B3B2B calc(50% + 746 * var(--u)));
+      rgba(247,239,230,0) 78.8%, rgba(247,239,230,.23) 79.6%, rgba(247,239,230,.45) 81.4%,
+      rgba(247,239,230,.75) 83.3%, rgba(247,239,230,.84) 85.2%, rgba(247,239,230,.888) 88%,
+      rgba(247,239,230,.905) 91%, rgba(247,239,230,.96) 95%, #F7EFE6 100%)
+    ,linear-gradient(to right, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 55%, transparent 100%);
 }
 
 /* ── TOPBAR ─────────────────────────────────────────────────────────── */
@@ -113,7 +108,7 @@
   height: calc(49 * var(--u));
   padding: 0 calc(24 * var(--u));
   border-radius: 999px;
-  background: #ffffff;
+  background: #F7EFE6;
   color: #1B3B2B;
   display: flex;
   align-items: center;
@@ -135,8 +130,8 @@
   width: 42px;
   height: 42px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.1);
   backdrop-filter: blur(10px);
   align-items: center;
   justify-content: center;
@@ -147,7 +142,7 @@
   position: absolute;
   width: 16px;
   height: 1.5px;
-  background: #fff;
+  background: #fbf6ef;
   border-radius: 2px;
   transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .2s ease;
 }
@@ -162,7 +157,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: linear-gradient(180deg, rgba(27,59,43,.98), rgba(27,59,43,.94));
+  background: linear-gradient(180deg, rgba(247,239,230,.98), rgba(247,239,230,.94));
   backdrop-filter: blur(14px);
   opacity: 0;
   visibility: hidden;
@@ -172,6 +167,10 @@
   justify-content: center;
 }
 
+/* menu sits on cream, so flip text and CTA back to dark */
+.menu { --ink: #1B3B2B; --muted: #4f5f55; }
+.menu .pillCta { background: #1B3B2B; color: #fff; }
+
 .menuClose {
   position: absolute;
   top: 20px;
@@ -179,8 +178,8 @@
   width: 42px;
   height: 42px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(27,59,43,.18);
+  background: rgba(255,255,255,.5);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -299,7 +298,7 @@
   height: calc(50 * var(--h));
   padding: 0 calc(28 * var(--h));
   border-radius: 999px;
-  background: #fff;
+  background: #F7EFE6;
   color: #1B3B2B;
   display: flex;
   align-items: center;
@@ -317,7 +316,7 @@
   font-size: calc(20.6 * var(--h));
   font-weight: 500;
   letter-spacing: calc(.12 * var(--h));
-  color: #fff;
+  color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -409,10 +408,10 @@
   .plate::after {
     background-image:
       linear-gradient(to bottom,
-        rgba(27,59,43,.72) 0%, rgba(27,59,43,.34) 24%, rgba(27,59,43,.34) 56%,
-        rgba(27,59,43,.80) 82%, rgba(27,59,43,.97) 94%, #1B3B2B 100%),
+        rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 24%, rgba(0,0,0,.15) 56%,
+        rgba(247,239,230,.70) 82%, rgba(247,239,230,.95) 94%, #F7EFE6 100%),
       linear-gradient(to right,
-        rgba(27,59,43,.86) 0%, rgba(27,59,43,.66) 42%, rgba(27,59,43,.20) 78%, rgba(27,59,43,.10) 100%);
+        rgba(0,0,0,.62) 0%, rgba(0,0,0,.38) 42%, rgba(0,0,0,.08) 78%, rgba(0,0,0,0) 100%);
   }
 
   .links, .pillNav { display: none; }
@@ -512,10 +511,10 @@
   .plate::after {
     background-image:
       linear-gradient(to bottom,
-        rgba(27,59,43,.66) 0%, rgba(27,59,43,.28) 24%, rgba(27,59,43,.30) 56%,
-        rgba(27,59,43,.78) 82%, rgba(27,59,43,.96) 94%, #1B3B2B 100%),
+        rgba(0,0,0,.30) 0%, rgba(0,0,0,.12) 24%, rgba(0,0,0,.12) 56%,
+        rgba(247,239,230,.66) 82%, rgba(247,239,230,.94) 94%, #F7EFE6 100%),
       linear-gradient(to right,
-        rgba(27,59,43,.84) 0%, rgba(27,59,43,.60) 42%, rgba(27,59,43,.16) 78%, rgba(27,59,43,.06) 100%);
+        rgba(0,0,0,.58) 0%, rgba(0,0,0,.34) 42%, rgba(0,0,0,.06) 78%, rgba(0,0,0,0) 100%);
   }
   .logos {
     grid-template-columns: repeat(5, auto);

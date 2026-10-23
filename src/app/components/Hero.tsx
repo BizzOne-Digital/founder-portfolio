@@ -133,7 +133,7 @@ export default function Hero() {
           onClick={() => setIsOpen(false)}
           aria-label="Close menu"
         >
-          <CloseIcon size={18} color="#fff" />
+          <CloseIcon size={18} color="#1B3B2B" />
         </button>
 
         <div className={styles.menuInner}>
@@ -183,7 +183,7 @@ export default function Hero() {
         {strip.map((s) => (
           <div key={s.name} className={styles.lg}>
             <span className={styles.lgIcon}>
-              <s.Icon size={22} color="#8b8a8a" />
+              <s.Icon size={22} color="#6f6a60" />
             </span>
             <span className={styles.lgWord}>{s.name}</span>
           </div>
